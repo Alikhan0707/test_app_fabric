@@ -9,8 +9,18 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
+
+PG_DATABASE = os.getenv('PG_DATABASE')
+PG_NAME = os.getenv('PG_NAME')
+PG_USER = os.getenv('PG_USER')
+PG_PASSWORD = os.getenv('PG_PASSWORD')
+PG_PORT = os.getenv('PG_PORT')
+PG_HOST = os.getenv('PG_HOST')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -75,8 +85,12 @@ WSGI_APPLICATION = 'notification_service.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': PG_DATABASE,
+        'USER': PG_USER,
+        'PASSWORD': PG_PASSWORD,
+        'HOST': PG_HOST,
+        'PORT': PG_PORT,
     }
 }
 
