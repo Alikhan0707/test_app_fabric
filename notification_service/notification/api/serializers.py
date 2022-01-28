@@ -34,3 +34,10 @@ class ClientSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
+
+
+class NotificationStatSerializer(serializers.Serializer):
+    total_messages = serializers.IntegerField()
+    status = serializers.BooleanField()
+
+
